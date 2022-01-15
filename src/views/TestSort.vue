@@ -5,11 +5,29 @@ section.test.test-sort
     .test-sort__nav.nav
     .test-sort__content.content.d-flex.flex-col.flex-row-md(v-if="isLoaded" v-cloak)
         .content__side.side
-            .form.border-black.bg-white.p-2
+            .form.border-black.bg-white.p-3.r-10
+                .form__row.mb-2
+                    label#labelName.form-label.txt-dark.txt-label.txt-after Наименование товара
+                    input#inputName.form-input(@change="validate($event)" autocomplete="off" placeholder="Введите наименование товара" required="required" type="text").w-100.r-20.p-1.size-1.shadow-1.mt-1
+                    .form-error(v-if="debugIsInvalid").txt-danger Поле является обязательным
+                .form__row.mb-2
+                    label#labelDescription.form-label.txt-dark.txt-label Описание товара
+                    textarea#inputDescription.form-input.form-textarea(@change="validate()" autocomplete="off" placeholder="Введите описание товара" ).w-100.r-20.p-1.size-1.shadow-1.mt-1
+                .form__row.mb-2
+                    label#labelImage.form-label.txt-dark.txt-label.txt-after Ссылка на изображение товара
+                    input#inputImage.form-input(@change="validate()" autocomplete="off" placeholder="Введите ссылку" required="required" type="text").w-100.r-20.p-1.size-1.shadow-1.mt-1
+                    .form-error(v-if="debugIsInvalid").txt-danger Поле является обязательным
+                .form__row.mb-2
+                    label#labelPrice.form-label.txt-dark.txt-label.txt-after Цена товара
+                    input#inputPrice.form-input(@change="validate()" autocomplete="off" placeholder="Введите цену" required="required" type="text").w-100.r-20.p-1.size-1.shadow-1.mt-1
+                    .form-error(v-if="debugIsInvalid").txt-danger Поле является обязательным
+                .form__row
+                    button.btn.bg-secondary.w-100.py-1.r-10
+                        .txt.txt-white.txt-center Добавить товар
         .content__items.items.wrap
-            .item(v-for="item in testNumber").border-black.bg-white.d-flex.flex-col
+            .item(v-for="item in debugNumber").border-black.bg-white.d-flex.flex-col.r-10
                 .item__remove
-                    icon-delete(:fill="'white'" :width="32" :height="32")
+                    icon-delete(:fill="'white'" :width="20" :height="28")
                 .item__img
                     img(src="@/assets/img_test-sort/testimg.png")
                 .item__body.p-2.mt-2.d-flex.flex-col
@@ -27,10 +45,16 @@ export default {
   components: { IconDelete },
   data: () => ({
     isLoaded: true,
-    testNumber: 9,
+    debugIsInvalid: false,
+    debugNumber: 9,
   }),
   created() {},
   mounted() {},
+  methods: {
+    validate(e) {
+      console.log(e.target.value);
+    },
+  },
 };
 </script>
 
@@ -40,18 +64,81 @@ export default {
   &__nav {
   }
   &__content {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 420px 1fr;
-    gap: 1em;
-    grid-template-areas: "side side" "items items";
+    display: flex;
     position: relative;
+    gap: 2em;
     @include breakpoint(lg) {
+      display: grid;
+      gap: 1em;
       grid-template-columns: 332px 1fr;
       grid-template-rows: auto;
       grid-template-areas: "side items";
     }
   }
+}
+
+button[disabled] {
+  background-color: $gray-1;
+  user-select: none;
+  cursor: default;
+  .txt {
+    color: $gray-2;
+  }
+}
+
+.txt-after {
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: $danger;
+    margin-left: 2px;
+  }
+}
+.form {
+  .form__row {
+    position: relative;
+    .form-error {
+      transition: all 0.3s ease-in-out;
+      position: absolute;
+      bottom: 1em;
+      z-index: 0;
+      opacity: 0;
+      user-select: none;
+    }
+    &.is-invalid {
+      .form-input {
+        border-color: $danger;
+      }
+      .form-error {
+        bottom: -1.2em;
+        opacity: 1;
+      }
+    }
+  }
+}
+.form-input {
+  padding: em(11) em(16);
+  border: 2px solid transparent;
+  min-width: 284px;
+  border-radius: 8px;
+  z-index: 1;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.size-1 {
+  height: 36px;
+}
+
+.form-textarea {
+  word-break: break-word;
+  height: 100%;
+  min-height: em(108);
+  resize: vertical;
 }
 
 .content {
@@ -74,7 +161,6 @@ export default {
 
 .item {
   position: relative;
-  //overflow: hidden;
   &:hover {
     .item__remove {
       visibility: visible;
@@ -89,11 +175,12 @@ export default {
     position: absolute;
     top: -0.4em;
     right: -0.4em;
-    background-color: #ff8484;
+    background-color: $danger;
     border-radius: 0.5em;
     display: flex;
     place-content: center;
-    padding: 0.3em;
+    width: 32px;
+    height: 32px;
   }
   &__img {
     height: 100%;
