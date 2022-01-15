@@ -1,0 +1,78 @@
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.right-enter-active,
+.right-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.right-enter-from,
+.right-leave-to {
+  opacity: 0;
+  transform: translateX(50%);
+}
+
+.hide-enter-active,
+.hide-leave-active {
+  transition: all 0.5s ease-in-out;
+}
+.hide-enter-from,
+.hide-leave-to {
+  opacity: 0;
+}
+.slide-fade-enter-active {
+  transition: all 1.5s cubic-bezier(0,.59,.54,.87);
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+/////////////////////////////////////////////////
+.anim-appear{
+  opacity: 0;
+  animation: appear 2s linear both;
+}
+.anim-ping {
+  opacity: 0;
+  animation: appear 1s ease-in-out alternate infinite;
+}
+//////////////////////////////////////////////////////
+@keyframes marquee {
+  0%   { transform: translate(100%, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+@keyframes marqueeY {
+  0%   { transform: translateY(-150%); }
+  50%   { transform: translateY(0%); }
+  100% { transform: translateY(150%); }
+}
+
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes fill {
+  from {
+    stroke-dashoffset: 2902.7;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
