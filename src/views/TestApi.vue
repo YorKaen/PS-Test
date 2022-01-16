@@ -67,7 +67,9 @@ export default {
   },
   computed: {
     sortedPosts() {
-      if (this.postsFilter.length > 1 && this.postsFilter !== "  ") {
+      console.log(this.postsFilter);
+      if (this.postsFilter.trim().length > 1) {
+        console.log("1");
         return this.postsArray.filter((item) =>
           item.author
             .toLocaleLowerCase()
