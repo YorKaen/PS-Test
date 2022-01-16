@@ -61,6 +61,8 @@ export default {
         this.isFormButtonDisabled = true;
       }
     },
+    //Простая проверка на пустые значения
+    //Перепробовав разные итерации с исключениями (key description не должен учитываться), это решение на самом деле занимает меньше кода раза в два, чем другие, и гораздо понятнее читается
     checkEmptyFields() {
       if (this.noEmptyCheck(this.newItem.title)) {
         if (this.noEmptyCheck(this.newItem.imgPath)) {

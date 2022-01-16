@@ -8,15 +8,6 @@ section.test.test-sort
             form-validate
         .content__items.items.wrap(v-if="sortedPosts.length > 0 && true")
             item-removable(v-for="item in sortedPosts" :key="item.id" :itemData="item" @removeItem="removeItem").bg-white.d-flex.flex-col.r-10
-            //.item(v-for="item in sortedPosts" :key="item.id").bg-white.d-flex.flex-col.r-10
-            //    .item__remove(@click="removeItem(item)")
-            //        icon-delete(:fill="'white'" :width="20" :height="28")
-            //    .item__img
-            //        img(:src="item.imgPath")
-            //    .item__body.p-2.mt-2.d-flex.flex-col
-            //        .item__title.mb-2 {{ item.title }}
-            //        .item__desc.mb-2 {{ item.description }}
-            //        .item__price.mb-1.mt-a {{ formatPrice(item.price) }} руб.
         .no-content__items(v-else)
             h3.txt-white.txt-center.w-100 ...Постов нет
     .no-content(v-else="isLoaded")
