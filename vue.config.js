@@ -1,4 +1,5 @@
 module.exports = {
   lintOnSave: false,
-  publicPath: "/PS-Tests/",
+  assetsDir: "assets",
+  publicPath: "/PS-Test/",
 };
