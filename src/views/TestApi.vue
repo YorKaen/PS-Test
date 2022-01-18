@@ -67,7 +67,6 @@ export default {
   },
   computed: {
     sortedPosts() {
-      console.log(this.postsFilter);
       if (this.postsFilter.trim().length > 1) {
         return this.postsArray.filter((item) =>
           item.author
