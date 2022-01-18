@@ -68,13 +68,11 @@
 [v-cloak] {
   display: block;
   padding: 50px 0;
-
   @keyframes spinner {
     to {
       transform: rotate(360deg);
     }
   }
-
   &:before {
     content: '';
     box-sizing: border-box;
@@ -93,7 +91,6 @@
     white-space: nowrap;
     overflow: hidden;
   }
-
   & > div {
     display: none;
   }
